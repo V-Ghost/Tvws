@@ -1,0 +1,42 @@
+[2020-08-17 16:15:50] local.INFO: array (
+  'user' => 'hii',
+)  
+[2020-08-17 16:24:04] local.INFO: array (
+  'user' => 'hii',
+  'name' => NULL,
+)  
+[2020-08-17 16:24:12] local.INFO: array (
+  'user' => 'hii',
+  'name' => 'bg',
+)  
+[2020-08-17 16:26:24] local.INFO: array (
+  'user' => 'hii',
+  'name' => NULL,
+)  
+[2020-08-17 16:26:31] local.INFO: array (
+  'user' => 'hii',
+)  
+[2020-08-17 16:27:21] local.INFO: array (
+  'user' => 'hii',
+)  
+[2020-08-17 16:27:51] local.INFO: array (
+  'user' => 'hii',
+)  
+[2020-08-17 16:28:08] local.INFO: array (
+  'user' => 'hii',
+)  
+[2020-08-17 16:41:53] local.INFO: array (
+  'user' => 'hii',
+  'location' => NULL,
+  'deviceDesc' => NULL,
+)  
+[2020-08-17 16:41:58] local.INFO: array (
+  'user' => 'hii',
+  'location' => 'd',
+  'deviceDesc' => NULL,
+)  
+[2020-08-17 16:42:05] local.INFO: array (
+  'user' => 'hii',
+  'location' => 'd',
+  'deviceDesc' => 's',
+)  
