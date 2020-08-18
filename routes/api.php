@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/person', function () {
-    $person = [
-        'first'=> 'b',
-        'last' => 'vukania', 
-    ];
-    return $person;
-});
+// Route::get('/person', function () {
+//     $person = [
+//         'first'=> 'b',
+//         'last' => 'vukania', 
+//     ];
+//     return $person;
+// });
 
 Route::post('init', 'init@store');
+
+
 

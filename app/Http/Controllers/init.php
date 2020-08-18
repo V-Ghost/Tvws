@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\RulesetInfo;
+use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class init extends Controller
 {
@@ -15,7 +18,11 @@ class init extends Controller
      */
     public function index()
     {
-        return response()->json(['foo' => 'bar']);
+        $articles = RulesetInfo::all();
+        Log::info($articles);
+        // Return collection of articles as a resource
+        
+        return new RulesetInfoCollection($articles);
     }
 
     /**
@@ -36,7 +43,7 @@ class init extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request);
+        // Log::info($request);
         $valid = Validator::make(
             $request->all(),
             [
@@ -50,7 +57,10 @@ class init extends Controller
               
             );
         }else{
-            return $request;
+              $articles = RulesetInfo::all();
+        // Log::info($articles);
+            return new RulesetInfoCollection($articles);
+            // return $request;
         }
        
         
