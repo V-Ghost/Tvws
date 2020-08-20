@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 //     return $person;
 // });
 
-Route::post('init', 'init@store');
+Route::post('init', 'init@initialise');
+
+Route::get('init', 'init@index');
 
 
 

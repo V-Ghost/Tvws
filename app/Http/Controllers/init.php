@@ -7,43 +7,20 @@ use Illuminate\Support\Facades\Log;
 use App\RulesetInfo;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\DatabaseSpec;
+use App\Http\Resources\DatabaseSpecCollection as DatabaseSpecCollection;
+
 
 class init extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $articles = RulesetInfo::all();
-        Log::info($articles);
-        // Return collection of articles as a resource
-        
-        return new RulesetInfoCollection($articles);
+        $ruleset = RulesetInfo::all();
+        return new RulesetInfoCollection($ruleset);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function initialise(Request $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // Log::info($request);
         $valid = Validator::make(
             $request->all(),
             [
@@ -53,61 +30,50 @@ class init extends Controller
         );
         if ($valid->fails()) {
             return response()->json(
-                $valid->errors()
-              
+                ['100' => $valid->errors()]
             );
-        }else{
-              $articles = RulesetInfo::all();
-        // Log::info($articles);
-            return new RulesetInfoCollection($articles);
-            // return $request;
+        } else {
+            $f = json_encode($request['location'], JSON_NUMERIC_CHECK);
+            if ($f > 100) {
+                $error = [
+                    'ERROR' => 'OUTSIDE_COVERAGE_AREA',
+
+                ];
+                return $error;
+            }
+            $ruleset = RulesetInfo::all();
+            if (empty($request['deviceDesc']['rulesetIDs'])) {
+                return new RulesetInfoCollection($ruleset);
+            } else {
+                $array = array();
+                $notSupported = true;
+                foreach ($ruleset as $r) {
+                    $y = json_encode($r['rulesetId']);
+                    foreach ($request['deviceDesc']['rulesetIDs'] as $x) {
+                        $z = json_encode($x['rulesetId']);
+
+                        if ($y == $z) {
+
+                            array_push($array, $r);
+
+                            $notSupported = false;
+                            break;
+                        }
+                    }
+                }
+                if ($notSupported) {
+                    $error = [
+                        'ERROR' => 'NOT_SUPPORTED',
+
+                    ];
+                    return $error;
+                }
+
+
+
+                return new RulesetInfoCollection($array);
+                // return json_encode($array);
+            }
         }
-       
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

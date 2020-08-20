@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RulesetInfo extends Model
+class DeviceDescriptor extends Model
 {
-    protected $table = 'RulesetInfos';
+    protected $table = 'DeviceDescriptor';
     public $incrementing = false;
     public $timestamps = false;
-    protected $primaryKey = 'rulesetId';
+    protected $primaryKey = 'modelId';
 }
