@@ -19,6 +19,7 @@ class CreateDeviceDescriptorTable extends Migration
             $table->string('serialNumber', 100);
             $table->string('manufacturerId', 100);
             $table->string('modelId', 100);
+            $table->primary('modelId');
             
         });
     }

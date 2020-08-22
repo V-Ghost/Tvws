@@ -15,9 +15,11 @@ class CreateRulesetInfoTable extends Migration
     {
         Schema::create('RulesetInfos', function (Blueprint $table) {
             $table->string('authority',100);
+           
             $table->string('rulesetId',100);
             $table->float('maxLocationChange');
             $table-> integer('maxPollingSecs');
+            $table->primary('rulesetId');
             
         });
     }
@@ -29,6 +31,6 @@ class CreateRulesetInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('RulesetInfo');
+        Schema::dropIfExists('RulesetInfos');
     }
 }
