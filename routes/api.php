@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('init', 'init@initialise');
 
+Route::post('avail_spectrum', 'Avail_Spectrum_Query@avail_spec');
+
 Route::get('init', 'init@index');
 
 

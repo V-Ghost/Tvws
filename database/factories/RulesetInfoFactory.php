@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(App\RulesetInfo::class, function (Faker $faker) {
     return [
         'authority' => $faker->text(50),
-        'rulesetId' => $faker->text(50),
+        'rulesetId' => $faker->uuid,
         'maxLocationChange' => $faker->randomFloat(2,0,100),
         'maxPollingSecs' => $faker->randomDigitNotNull,
     ];

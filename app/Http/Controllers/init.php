@@ -30,13 +30,13 @@ class init extends Controller
         );
         if ($valid->fails()) {
             return response()->json(
-                ['100' => $valid->errors()]
+                ['201' => $valid->errors()]
             );
         } else {
             $f = json_encode($request['location'], JSON_NUMERIC_CHECK);
             if ($f > 100) {
                 $error = [
-                    'ERROR' => 'OUTSIDE_COVERAGE_AREA',
+                    '104' => 'OUTSIDE_COVERAGE_AREA',
 
                 ];
                 return $error;
@@ -55,7 +55,7 @@ class init extends Controller
                         if ($y == $z) {
 
                             array_push($array, $r);
-
+                             
                             $notSupported = false;
                             break;
                         }
@@ -63,7 +63,7 @@ class init extends Controller
                 }
                 if ($notSupported) {
                     $error = [
-                        'ERROR' => 'NOT_SUPPORTED',
+                        '102' => 'NOT_SUPPORTED',
 
                     ];
                     return $error;
@@ -72,7 +72,7 @@ class init extends Controller
 
 
                 return new RulesetInfoCollection($array);
-                // return json_encode($array);
+                
             }
         }
     }

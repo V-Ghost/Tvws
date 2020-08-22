@@ -15,7 +15,7 @@ class CreateDeviceDescriptorTable extends Migration
     public function up()
     {
         Schema::create('DeviceDescriptor', function (Blueprint $table) {
-            $table->id();
+            
             $table->string('serialNumber', 100);
             $table->string('manufacturerId', 100);
             $table->string('modelId', 100);
