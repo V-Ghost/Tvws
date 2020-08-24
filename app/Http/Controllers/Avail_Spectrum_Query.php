@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\DeviceDescriptor;
 use Illuminate\Support\Facades\Log;
+use App\Http\Resources\DeviceDescriptorCollection as DeviceDescriptorCollection;
 
 class Avail_Spectrum_Query extends Controller
 {
@@ -30,14 +31,17 @@ class Avail_Spectrum_Query extends Controller
                     ['201' => $valid->errors()]
                 );
             }else{
-                $modelId = json_encode($request['deviceDesc']['modelId']);
-                $data = DeviceDescriptor::find($modelId);
-                 if($data == null){
-                     Log::info('null');
+                // $modelId = json_encode();
+                // $data = DeviceDescriptor::all();
+                $data = DeviceDescriptor::find($request['deviceDesc']['modelId']);
+                Log::info($data);
+                 if(empty($data) || $data == ""){
+                     return response()->json(
+                         ['error' => "not resgistered"]
+                     );
                  }else{
-                    return response()->json(
-                        ['modelid' => $data]
-                    );
+                    // Log::info($data['manufacturerId']);
+                   return $data;
                  }
                 
             }
