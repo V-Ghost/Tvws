@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RulesetInfoSeeder::class);
         $this->call(DeviceDescriptorSeeder::class);
+        // $this->call(SpectrumSeeder::class);
     }
 }

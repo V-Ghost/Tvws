@@ -10,4 +10,14 @@ class RulesetInfo extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $primaryKey = 'rulesetId';
+
+    public function Spectrums()
+    {
+        return $this->hasMany('App\Spectrums', 'rulesetId');
+    }
+
+    // public function SpectrumsProfilePoints()
+    // {
+    //     return $this->hasMany('App\SpectrumProfilePoints', 'rulesetId');
+    // }
 }

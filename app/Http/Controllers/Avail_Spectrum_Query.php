@@ -7,12 +7,16 @@ use Validator;
 use App\DeviceDescriptor;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\DeviceDescriptorCollection as DeviceDescriptorCollection;
+use App\RulesetInfo;
+use App\Spectrums;
 
 class Avail_Spectrum_Query extends Controller
 {
 
     public function index()
-    { }
+    { 
+
+    }
 
 
 
@@ -34,14 +38,31 @@ class Avail_Spectrum_Query extends Controller
                 // $modelId = json_encode();
                 // $data = DeviceDescriptor::all();
                 $data = DeviceDescriptor::find($request['deviceDesc']['modelId']);
-                Log::info($data);
+
+               
                  if(empty($data) || $data == ""){
+                    Log::info($data);
                      return response()->json(
                          ['error' => "not resgistered"]
                      );
                  }else{
-                    // Log::info($data['manufacturerId']);
-                   return $data;
+                    $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs']);
+                    if(empty($ruleset)){
+                       return response()->json(
+                         ['error' => "no spectrums avaliable"]
+                     );
+                    }
+                    $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs'])->Spectrums;
+                    $r = Spectrums::find($ruleset[0]["id"])->SpectrumsProfilePoints;
+                    Log::info($ruleset[0]["id"]);
+                    Log::info($r);
+                    return response()->json(
+                        ['rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
+                        'spectrumSchedules' => [$ruleset,
+                        $r
+                        ]
+                        ]
+                    );
                  }
                 
             }

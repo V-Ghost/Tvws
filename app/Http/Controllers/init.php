@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\RulesetInfo;
+
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
 use App\DatabaseSpec;
@@ -16,6 +17,9 @@ class init extends Controller
     public function index()
     {
         $ruleset = RulesetInfo::all();
+        if($ruleset == null){
+            Log::info('null');
+        }
         return new RulesetInfoCollection($ruleset);
     }
     public function initialise(Request $request)
