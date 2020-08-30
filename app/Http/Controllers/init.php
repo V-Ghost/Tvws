@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\RulesetInfo;
-
+use App\Library\DistanceCalculator;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
 use App\DatabaseSpec;
@@ -17,7 +17,7 @@ class init extends Controller
     public function index()
     {
         $ruleset = RulesetInfo::all();
-        if($ruleset == null){
+        if ($ruleset == null) {
             Log::info('null');
         }
         return new RulesetInfoCollection($ruleset);
@@ -37,7 +37,12 @@ class init extends Controller
                 ['201' => $valid->errors()]
             );
         } else {
-            $f = json_encode($request['location'], JSON_NUMERIC_CHECK);
+            $lat = json_encode($request['location']['point']['center']['latitude'], JSON_NUMERIC_CHECK);
+            $long = json_encode($request['location']['point']['center']['longitude'], JSON_NUMERIC_CHECK);
+            $s = new DistanceCalculator;
+            $f = $s->distance(5.657634, -0.066219, $lat, $long);
+            
+            Log::info($f);
             if ($f > 100) {
                 $error = [
                     '104' => 'OUTSIDE_COVERAGE_AREA',
@@ -59,7 +64,7 @@ class init extends Controller
                         if ($y == $z) {
 
                             array_push($array, $r);
-                             
+
                             $notSupported = false;
                             break;
                         }
@@ -76,7 +81,6 @@ class init extends Controller
 
 
                 return new RulesetInfoCollection($array);
-                
             }
         }
     }
