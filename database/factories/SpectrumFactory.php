@@ -9,6 +9,6 @@ $factory->define(App\Spectrums::class, function (Faker $faker) {
     return [
         
         'resolutionBwHz' => $faker->randomFloat(2,0,100),  
-         
+        'created_at'=> $faker->dateTimeThisMonth($max = 'now', $timezone = null)
     ];
 });

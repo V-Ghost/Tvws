@@ -15,7 +15,8 @@ class CreateSpectrumsTable extends Migration
     {
         Schema::create('Spectrums', function (Blueprint $table) {
             $table->id();
-             $table->string('rulesetId',100);
+            $table->dateTime('created_at', 0);
+            $table->string('rulesetId',100);
             $table->float('resolutionBwHz');
             $table->foreign('rulesetId')->references('rulesetId')->on('RulesetInfos');
         });

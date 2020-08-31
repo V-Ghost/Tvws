@@ -15,21 +15,7 @@ use App\SpectrumProfilePoints;
 
 class Avail_Spectrum_Query extends Controller
 {
-    //  function distance($lat1, $lon1, $lat2, $lon2) { 
-    //     $pi80 = M_PI / 180; 
-    //     $lat1 *= $pi80; 
-    //     $lon1 *= $pi80; 
-    //     $lat2 *= $pi80; 
-    //     $lon2 *= $pi80; 
-    //     $r = 6372.797; // mean radius of Earth in km 
-    //     $dlat = $lat2 - $lat1; 
-    //     $dlon = $lon2 - $lon1; 
-    //     $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlon / 2) * sin($dlon / 2); 
-    //     $c = 2 * atan2(sqrt($a), sqrt(1 - $a)); 
-    //     $km = $r * $c; 
-    //     //echo ' '.$km; 
-    //     return $km; 
-    //     }
+
     public function index()
     { }
 
@@ -63,41 +49,84 @@ class Avail_Spectrum_Query extends Controller
                     );
                 } else {
                     $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs']);
+                    Log::info($ruleset);
                     if (empty($ruleset)) {
                         return response()->json(
                             ['error' => "no spectrums avaliable"]
                         );
                     }
                     $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs'])->Spectrums;
+
+
                     $spectrum = Spectrums::find($ruleset[0]["id"]);
-                    $spectrumProfiles = SpectrumProfilePoints::where('Spectrums_id', $ruleset[0]["id"])->get();
-                    Log::info($ruleset[0]["id"]);
-                    
+
+                    $spectrumProfiles = SpectrumProfilePoints::where('Spectrums_id', $spectrum["id"])->get();
+
+
                     $now = new DateTime();
-                     date_default_timezone_set('Africa/Accra');
-                     $c = date('Y-m-d H:i:s');
-                //    $now = new DateTime(null, new \DateTimeZone('America/New_York'));
-                //    $now->format('Y-m-d H:i:s');
-                    Log::info($c);
-                    return response()->json(
-                        [
-                            'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
-                            'spectrumSchedules' => [
-                                "eventTime" => [
-                                    "startTime" => "",
-                                    "stopTime" => ""
-                                ],
-                                "Spectrum" => [
-                                    "resolutionBwHz" => $spectrum->resolutionBwHz,
-                                    "profiles" => $spectrumProfiles
-                                ],
+                    date_default_timezone_set('Africa/Accra');
 
-                            ],
+                    $startTime = date('Y-m-d H:i:s');
+
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-24 hours", strtotime($startTime));
+                    //    $now = new DateTime(null, new \DateTimeZone('America/New_York'));
+                    //    $now->format('Y-m-d H:i:s');
+                    Log::info(date('Y-m-d H:i:s', $s));
+                    Log::info($spectrum["created_at"]);
+                    Log::info($oneDayAgo);
+                    if ($spectrum["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+                        return response()->json(
+                            [
+                                'error' => 'no avaliable spectrums'
+                            ]
+                        );
+                    } else {
+                        $stopTime = date('Y-m-d H:i:s', $s);
+                        if ($stopTime > $startTime) {
+                            Log::info('worked');
+                        }
+
+                        return response()->json(
+                            [
+                                'timestamp' =>  $startTime,
+                                'deviceDesc' => $request['deviceDesc'],
+                                'spectrumSpecs' => [
+                                    'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
+                                    'spectrumSchedules' => [
+                                        "eventTime" => [
+                                            "startTime" => $startTime,
+                                            "stopTime" => $stopTime
+                                        ],
+                                        "Spectrum" => [
+                                            "resolutionBwHz" => $spectrum->resolutionBwHz,
+                                            "profiles" => $spectrumProfiles
+                                        ],
+
+                                    ],
+                                ]
+                            ]
+                        );
+                        // return response()->json(
+                        //     [
+                        //         'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
+                        //         'spectrumSchedules' => [
+                        //             "eventTime" => [
+                        //                 "startTime" => $startTime,
+                        //                 "stopTime" => $stopTime
+                        //             ],
+                        //             "Spectrum" => [
+                        //                 "resolutionBwHz" => $spectrum->resolutionBwHz,
+                        //                 "profiles" => $spectrumProfiles
+                        //             ],
+
+                        //         ],
 
 
 
-                        ]
-                    );
+                        //     ]
+                        // );
+                    }
                 }
             }
         }
