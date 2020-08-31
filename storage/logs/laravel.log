@@ -1,46 +1,11 @@
-[2020-08-31 20:21:10] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:21:10] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:21:10] local.INFO: 2020-09-01 20:21:10  
-[2020-08-31 20:21:10] local.INFO: worked  
-[2020-08-31 20:21:10] local.INFO: array (
-  'f' => 'f',
-  'c' => 'f',
-)  
-[2020-08-31 20:23:37] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:23:37] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:23:37] local.INFO: 2020-09-01 20:23:37  
-[2020-08-31 20:23:37] local.INFO: worked  
-[2020-08-31 20:23:37] local.INFO: array (
-  'f' => 'f',
-  'c' => 'f',
-)  
-[2020-08-31 20:24:05] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:24:05] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:24:05] local.INFO: 2020-09-01 20:24:05  
-[2020-08-31 20:24:05] local.INFO: worked  
-[2020-08-31 20:24:05] local.INFO: array (
-  0 => 
-  array (
-    'f' => 'f',
-    'c' => 'f',
-  ),
-  1 => 
-  array (
-    'p' => 'f',
-    'm' => 'f',
-  ),
-)  
-[2020-08-31 20:24:54] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:24:54] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:24:54] local.INFO: 2020-09-01 20:24:54  
-[2020-08-31 20:24:54] local.INFO: worked  
-[2020-08-31 20:24:54] local.ERROR: Trying to get property 'array_values' of non-object {"exception":"[object] (ErrorException(code: 0): Trying to get property 'array_values' of non-object at C:\\xampp\\htdocs\\lsapp\\app\\Http\\Controllers\\Avail_Spectrum_Query.php:91)
+[2020-08-31 21:43:09] local.INFO: [{"id":1,"created_at":"2020-08-31 17:18:06","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","resolutionBwHz":83.8}]  
+[2020-08-31 21:46:18] local.ERROR: Property [save] does not exist on this collection instance. {"exception":"[object] (Exception(code: 0): Property [save] does not exist on this collection instance. at C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\EnumeratesValues.php:837)
 [stacktrace]
-#0 C:\\xampp\\htdocs\\lsapp\\app\\Http\\Controllers\\Avail_Spectrum_Query.php(91): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8, 'Trying to get p...', 'C:\\\\xampp\\\\htdocs...', 91, Array)
-#1 [internal function]: App\\Http\\Controllers\\Avail_Spectrum_Query->avail_spec(Object(Illuminate\\Http\\Request))
+#0 C:\\xampp\\htdocs\\lsapp\\app\\Http\\Controllers\\Spectrum_Use_Resp.php(37): Illuminate\\Support\\Collection->__get('save')
+#1 [internal function]: App\\Http\\Controllers\\Spectrum_Use_Resp->spectrum_Use(Object(Illuminate\\Http\\Request))
 #2 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
-#3 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('avail_spec', Array)
-#4 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(239): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Avail_Spectrum_Query), 'avail_spec')
+#3 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('spectrum_Use', Array)
+#4 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(239): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Spectrum_Use_Resp), 'spectrum_Use')
 #5 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(196): Illuminate\\Routing\\Route->runController()
 #6 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(685): Illuminate\\Routing\\Route->run()
 #7 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
@@ -74,84 +39,95 @@
 #35 C:\\xampp\\htdocs\\lsapp\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #36 {main}
 "} 
-[2020-08-31 20:28:01] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:28:01] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:28:01] local.INFO: 2020-09-01 20:28:01  
-[2020-08-31 20:28:01] local.INFO: worked  
-[2020-08-31 20:30:14] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:30:14] local.INFO: [{"hz":77.65,"dbm":75.49,"Spectrums_id":1},{"hz":71.96,"dbm":18.43,"Spectrums_id":1},{"hz":16.17,"dbm":31.12,"Spectrums_id":1},{"hz":37.1,"dbm":68.74,"Spectrums_id":1},{"hz":3.31,"dbm":64,"Spectrums_id":1},{"hz":62.24,"dbm":93,"Spectrums_id":1}]  
-[2020-08-31 20:30:14] local.INFO: 2020-09-01 20:30:14  
-[2020-08-31 20:30:14] local.INFO: worked  
-[2020-08-31 20:40:30] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:40:30] local.INFO: 2020-09-01 20:40:30  
-[2020-08-31 20:40:30] local.INFO: {"id":1,"created_at":"2020-08-19 17:18:06","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","resolutionBwHz":83.8}  
-[2020-08-31 20:40:30] local.INFO: worked  
-[2020-08-31 20:42:33] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:42:33] local.INFO: 2020-09-01 20:42:33  
-[2020-08-31 20:42:33] local.INFO: 2020-08-19 17:18:06  
-[2020-08-31 20:42:33] local.INFO: worked  
-[2020-08-31 20:47:26] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:47:26] local.INFO: 2020-09-01 20:47:26  
-[2020-08-31 20:47:26] local.INFO: 2020-08-19 17:18:06  
-[2020-08-31 20:47:26] local.INFO: worked  
-[2020-08-31 20:50:20] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:50:20] local.INFO: 2020-09-01 20:50:20  
-[2020-08-31 20:50:20] local.INFO: 2020-08-19 17:18:06  
-[2020-08-31 20:50:20] local.INFO: worked  
-[2020-08-31 20:52:00] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:52:00] local.INFO: 2020-09-01 20:52:00  
-[2020-08-31 20:52:00] local.INFO: 2020-08-19 17:18:06  
-[2020-08-31 20:52:00] local.INFO: expired  
-[2020-08-31 20:52:00] local.INFO: worked  
-[2020-08-31 20:54:57] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:54:57] local.INFO: 2020-09-01 20:54:57  
-[2020-08-31 20:54:57] local.INFO: 2020-08-19 17:18:06  
-[2020-08-31 20:56:03] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:56:03] local.INFO: 2020-09-01 20:56:03  
-[2020-08-31 20:56:03] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:56:05] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:56:05] local.INFO: 2020-09-01 20:56:05  
-[2020-08-31 20:56:05] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:56:06] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:56:06] local.INFO: 2020-09-01 20:56:06  
-[2020-08-31 20:56:06] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:56:22] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:56:22] local.INFO: 2020-09-01 20:56:22  
-[2020-08-31 20:56:22] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:56:22] local.INFO: worked  
-[2020-08-31 20:57:03] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:57:03] local.INFO: 2020-09-01 20:57:03  
-[2020-08-31 20:57:03] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:57:31] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:57:31] local.INFO: 2020-09-01 20:57:31  
-[2020-08-31 20:57:31] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:57:31] local.INFO: 1598821051  
-[2020-08-31 20:57:46] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:57:46] local.INFO: 2020-09-01 20:57:46  
-[2020-08-31 20:57:46] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:57:46] local.INFO: 1598821066  
-[2020-08-31 20:58:30] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:58:30] local.INFO: 2020-09-01 20:58:30  
-[2020-08-31 20:58:30] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:58:30] local.INFO: 1598821110  
-[2020-08-31 20:58:30] local.INFO: worked  
-[2020-08-31 20:58:44] local.INFO: {"authority":"Rerum est aut tenetur nihil.","rulesetId":"6874cbe3-b1d1-3f90-958a-702dee6ecfcd","maxLocationChange":18.83,"maxPollingSecs":3}  
-[2020-08-31 20:58:44] local.INFO: 2020-09-01 20:58:44  
-[2020-08-31 20:58:44] local.INFO: 2020-08-24 02:09:56  
-[2020-08-31 20:58:44] local.INFO: 1598821124  
-[2020-08-31 20:58:50] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 20:58:50] local.INFO: 2020-09-01 20:58:50  
-[2020-08-31 20:58:50] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 20:58:50] local.INFO: 1598821130  
-[2020-08-31 20:58:50] local.INFO: worked  
-[2020-08-31 21:01:36] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 21:01:36] local.INFO: 2020-08-31 21:01:36  
-[2020-08-31 21:01:36] local.INFO: 2020-09-01 21:01:36  
-[2020-08-31 21:01:36] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 21:01:36] local.INFO: 1598821296  
-[2020-08-31 21:01:36] local.INFO: worked  
-[2020-08-31 21:04:17] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
-[2020-08-31 21:04:17] local.INFO: 2020-09-01 21:04:17  
-[2020-08-31 21:04:17] local.INFO: 2020-08-31 17:18:06  
-[2020-08-31 21:04:17] local.INFO: 1598821457  
-[2020-08-31 21:04:17] local.INFO: worked  
+[2020-08-31 21:46:31] local.INFO: [{"id":1,"created_at":"2020-08-31 21:46:31","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","resolutionBwHz":83.8}]  
+[2020-08-31 21:48:05] local.INFO: [{"id":1,"created_at":"2020-08-31 21:48:05","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","resolutionBwHz":83.8}]  
+[2020-08-31 21:48:57] local.INFO: [{"id":1,"created_at":"2020-08-31 17:18:06","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","resolutionBwHz":83.8}]  
+[2020-08-31 21:49:05] local.ERROR: Property [save] does not exist on this collection instance. {"exception":"[object] (Exception(code: 0): Property [save] does not exist on this collection instance. at C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\EnumeratesValues.php:837)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\lsapp\\app\\Http\\Controllers\\Spectrum_Use_Resp.php(37): Illuminate\\Support\\Collection->__get('save')
+#1 [internal function]: App\\Http\\Controllers\\Spectrum_Use_Resp->spectrum_Use(Object(Illuminate\\Http\\Request))
+#2 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#3 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('spectrum_Use', Array)
+#4 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(239): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Spectrum_Use_Resp), 'spectrum_Use')
+#5 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(196): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(685): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(59): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#12 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(687): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#14 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(662): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(628): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#16 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(617): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(63): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\lsapp\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\lsapp\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(140): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(109): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\lsapp\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\lsapp\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
+#36 {main}
+"} 
+[2020-08-31 21:49:52] local.INFO: 1  
+[2020-08-31 21:59:00] local.ERROR: Property [name] does not exist on this collection instance. {"exception":"[object] (Exception(code: 0): Property [name] does not exist on this collection instance. at C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\EnumeratesValues.php:837)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\lsapp\\app\\Http\\Controllers\\Spectrum_Use_Resp.php(41): Illuminate\\Support\\Collection->__get('name')
+#1 [internal function]: App\\Http\\Controllers\\Spectrum_Use_Resp->spectrum_Use(Object(Illuminate\\Http\\Request))
+#2 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): call_user_func_array(Array, Array)
+#3 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('spectrum_Use', Array)
+#4 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(239): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Spectrum_Use_Resp), 'spectrum_Use')
+#5 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(196): Illuminate\\Routing\\Route->runController()
+#6 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(685): Illuminate\\Routing\\Route->run()
+#7 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#8 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(41): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php(59): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#12 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#13 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(687): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#14 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(662): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#15 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(628): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#16 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(617): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#17 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#18 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(128): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(63): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\xampp\\htdocs\\lsapp\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fruitcake\\Cors\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\xampp\\htdocs\\lsapp\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(167): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(103): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(140): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#33 C:\\xampp\\htdocs\\lsapp\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(109): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#34 C:\\xampp\\htdocs\\lsapp\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\lsapp\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
+#36 {main}
+"} 
+[2020-08-31 22:01:21] local.INFO: {"authority":"Omnis qui qui laborum earum numquam.","rulesetId":"10691542-b4a3-377d-a80d-4190dc36cb50","maxLocationChange":89.49,"maxPollingSecs":5}  
+[2020-08-31 22:02:34] local.INFO: 18.411583282553  
+[2020-08-31 22:03:10] local.INFO: 18.411583282553  
+[2020-08-31 22:03:48] local.INFO: 18.411583282553  
+[2020-08-31 22:05:00] local.INFO: 18.411583282553  
+[2020-08-31 22:05:50] local.INFO: 18.411583282553  
+[2020-08-31 22:06:08] local.INFO: 18.411583282553  
+[2020-08-31 22:06:44] local.INFO: 18.411583282553  

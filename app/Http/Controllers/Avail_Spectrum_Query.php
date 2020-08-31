@@ -12,6 +12,7 @@ use App\Http\Resources\Spectrums as SpectrumResource;
 use App\RulesetInfo;
 use App\Spectrums;
 use App\SpectrumProfilePoints;
+use App\DatabaseSpec;
 
 class Avail_Spectrum_Query extends Controller
 {
@@ -70,11 +71,8 @@ class Avail_Spectrum_Query extends Controller
 
                     $s = strtotime("+24 hours", strtotime($startTime));
                     $oneDayAgo = strtotime("-24 hours", strtotime($startTime));
-                    //    $now = new DateTime(null, new \DateTimeZone('America/New_York'));
-                    //    $now->format('Y-m-d H:i:s');
-                    Log::info(date('Y-m-d H:i:s', $s));
-                    Log::info($spectrum["created_at"]);
-                    Log::info($oneDayAgo);
+                   
+                    $DatabaseSpec = DatabaseSpec::all();
                     if ($spectrum["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
                         return response()->json(
                             [
@@ -83,10 +81,7 @@ class Avail_Spectrum_Query extends Controller
                         );
                     } else {
                         $stopTime = date('Y-m-d H:i:s', $s);
-                        if ($stopTime > $startTime) {
-                            Log::info('worked');
-                        }
-
+                       
                         return response()->json(
                             [
                                 'timestamp' =>  $startTime,
@@ -104,28 +99,11 @@ class Avail_Spectrum_Query extends Controller
                                         ],
 
                                     ],
-                                ]
+                                ],
+                                'databaseChange'=> $DatabaseSpec,
                             ]
                         );
-                        // return response()->json(
-                        //     [
-                        //         'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
-                        //         'spectrumSchedules' => [
-                        //             "eventTime" => [
-                        //                 "startTime" => $startTime,
-                        //                 "stopTime" => $stopTime
-                        //             ],
-                        //             "Spectrum" => [
-                        //                 "resolutionBwHz" => $spectrum->resolutionBwHz,
-                        //                 "profiles" => $spectrumProfiles
-                        //             ],
-
-                        //         ],
-
-
-
-                        //     ]
-                        // );
+                       
                     }
                 }
             }

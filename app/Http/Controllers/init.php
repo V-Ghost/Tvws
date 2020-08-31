@@ -8,6 +8,7 @@ use App\RulesetInfo;
 use App\Library\DistanceCalculator;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
+
 use App\DatabaseSpec;
 use App\Http\Resources\DatabaseSpecCollection as DatabaseSpecCollection;
 
@@ -77,10 +78,17 @@ class init extends Controller
                     ];
                     return $error;
                 }
+                $DatabaseSpec = DatabaseSpec::all();
 
 
-
-                return new RulesetInfoCollection($array);
+                
+                return response()->json(
+                  [
+                    
+                    'rulesetInfos' => $array,
+                    'databaseChange'=> $DatabaseSpec,
+                  ]
+                );
             }
         }
     }
