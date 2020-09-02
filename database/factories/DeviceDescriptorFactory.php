@@ -10,6 +10,8 @@ $factory->define(App\DeviceDescriptor::class, function (Faker $faker) {
         'serialNumber' => $faker->uuid,
         'manufacturerId' => $faker->uuid,
         'modelId' => $faker->uuid,
+        'latitude' => $faker->latitude,
+        'longitude' => $faker->longitude,
         
     ];
 });

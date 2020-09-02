@@ -44,7 +44,7 @@ class init extends Controller
             $f = $s->distance(5.657634, -0.066219, $lat, $long);
             
             Log::info($f);
-            if ($f > 100) {
+            if ($f > 50) {
                 $error = [
                     '104' => 'OUTSIDE_COVERAGE_AREA',
 
