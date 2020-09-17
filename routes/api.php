@@ -28,6 +28,13 @@ Route::post('avail_spectrum', 'Avail_Spectrum_Query@avail_spec');
 
 Route::post('spectrum_use', 'Spectrum_Use_Resp@spectrum_Use');
 
+Route::post('spectrum_reg', 'Spectrum_Registration@registration');
+
+Route::post('device_valid', 'deviceValidation@dev_valid');
+
+Route::post('device_reg', 'deviceRegistration@dev_reg');
+
+
 Route::get('init', 'init@index');
 
 

@@ -41,7 +41,7 @@ class init extends Controller
             $lat = json_encode($request['location']['point']['center']['latitude'], JSON_NUMERIC_CHECK);
             $long = json_encode($request['location']['point']['center']['longitude'], JSON_NUMERIC_CHECK);
             $s = new DistanceCalculator;
-            $f = $s->distance(5.657634, -0.066219, $lat, $long);
+            $f = $s->distance(5.655921, -0.182405, $lat, $long);
             
             Log::info($f);
             if ($f > 50) {
@@ -53,7 +53,10 @@ class init extends Controller
             }
             $ruleset = RulesetInfo::all();
             if (empty($request['deviceDesc']['rulesetIDs'])) {
-                return new RulesetInfoCollection($ruleset);
+                return   $error = [
+                    '104' => 'OUTSIDE_COVERAGE_AREA',
+
+                ];
             } else {
                 $array = array();
                 $notSupported = true;

@@ -73,7 +73,7 @@ class Avail_Spectrum_Query extends Controller
                     $oneDayAgo = strtotime("-24 hours", strtotime($startTime));
                    
                     $DatabaseSpec = DatabaseSpec::all();
-                    if ($spectrum["created_at"] >date('Y-m-d H:i:s', $oneDayAgo)) {
+                    if ($spectrum["created_at"] > date('Y-m-d H:i:s', $oneDayAgo)) {
                         return response()->json(
                             [
                                 'error' => 'no avaliable spectrums'
