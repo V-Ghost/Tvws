@@ -15,41 +15,61 @@ use App\Spectrums;
 use App\SpectrumProfilePoints;
 use App\DatabaseSpec;
 
-class deviceValidation extends Controller
+class DeviceValidation extends Controller
 {
-    
+
     public function dev_valid(Request $request)
     {
         $valid = Validator::make(
             $request->all(),
             [
-                'deviceValidities' => 'required',
-               
+                'key' => 'required',
+                'deviceDesc.email' => 'required',
+                'deviceDesc.password' => 'required',
+
             ]
         );
         if ($valid->fails()) {
             return response()->json(
                 ['201' => $valid->errors()]
             );
-        } else {                          
-            $data = DeviceDescriptor::find($request['deviceValidities']['deviceDesc']['modelId']);
-            
-            if (empty($data) || $data == "") {
-                Log::info($data);
+        } else {
+            try {
+                $y = json_encode($request['deviceDesc']['serialNumber']);
+                $x = json_encode($request['deviceDesc']['manufacturerId']);
+
+                $password = json_encode($request['deviceDesc']['password']);
+
+                $id = $x . $y;
+                $data = DeviceDescriptor::find($id);
+
+                if (empty($data)) {
+                    Log::info($data);
+                    return response()->json(
+                        [
+                            'manufacturerId' => $request['deviceDesc']['manufacturerId'],
+                            'serialNumber' => $request['deviceDesc']['serialNumber'],
+                            'isValid' => "False"
+
+                        ]
+                    );
+                } else {
+                    return response()->json(
+                        [
+                           'manufacturerId' => $request['deviceDesc']['manufacturerId'],
+                            'serialNumber' => $request['deviceDesc']['serialNumber'],
+                            'isValid' => "True"
+
+                        ]
+                    );
+                }
+            } catch (Exception $e) {
+                Log::alert($e->getMessage());
+
                 return response()->json(
-                    [   $request['deviceValidities'],
-                        'isValid' => "False"
-                    
-                    ]
-                );
-            } else {
-                return response()->json(
-                    [   $request['deviceValidities'],
-                        'isValid' => "True"
-                    
-                    ]
+                    $e
                 );
             }
-        }    
+        }
     }
 }

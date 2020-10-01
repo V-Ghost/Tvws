@@ -25,12 +25,14 @@ class Avail_Spectrum_Query extends Controller
     public function avail_spec(Request $request)
     {
 
-        if (empty($request['requestType'])) {
+       
             $valid = Validator::make(
                 $request->all(),
                 [
                     'deviceDesc' => 'required',
                     'location' => 'required',
+                    'deviceDesc.manufacturerId' => 'required',
+                    'deviceDesc.serialNumber' => 'required',
                 ]
             );
             if ($valid->fails()) {
@@ -38,75 +40,89 @@ class Avail_Spectrum_Query extends Controller
                     ['201' => $valid->errors()]
                 );
             } else {
-                // $modelId = json_encode();
-                // $data = DeviceDescriptor::all();
-                $data = DeviceDescriptor::find($request['deviceDesc']['modelId']);
-
-
-                if (empty($data) || $data == "") {
-                    Log::info($data);
-                    return response()->json(
-                        ['error' => "not resgistered"]
-                    );
-                } else {
-                    $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs']);
+                try{
+                    $y = json_encode($request['deviceDesc']['serialNumber']);
+                    $x = json_encode($request['deviceDesc']['manufacturerId']);
                     
-                    if (empty($ruleset)) {
-                        return response()->json(
-                            ['error' => "not supported"]
-                        );
-                    }
-                    $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs'])->Spectrums;
-
-
-                    $spectrum = Spectrums::find($ruleset[0]["id"]);
-
-                    $spectrumProfiles = SpectrumProfilePoints::where('Spectrums_id', $spectrum["id"])->get();
-
-
-                    $now = new DateTime();
-                    date_default_timezone_set('Africa/Accra');
-
-                    $startTime = date('Y-m-d H:i:s');
-
-                    $s = strtotime("+24 hours", strtotime($startTime));
-                    $oneDayAgo = strtotime("-24 hours", strtotime($startTime));
                    
-                    $DatabaseSpec = DatabaseSpec::all();
-                    if ($spectrum["created_at"] > date('Y-m-d H:i:s', $oneDayAgo)) {
+                    $id = $x . $y;
+                    $data = DeviceDescriptor::find($id);
+
+
+                    if (empty($data)) {
+                        
                         return response()->json(
-                            [
-                                'error' => 'no avaliable spectrums'
-                            ]
+                            ['error' => "not resgistered"]
                         );
                     } else {
-                        $stopTime = date('Y-m-d H:i:s', $s);
+                        $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs']);
+                        
+                        if (empty($ruleset)) {
+                            return response()->json(
+                                ['error' => "not supported"]
+                            );
+                        }
+                        $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs'])->Spectrums;
+    
+    
+                        $spectrum = Spectrums::find($ruleset[0]["id"]);
+    
+                        $spectrumProfiles = SpectrumProfilePoints::where('Spectrums_id', $spectrum["id"])->get();
+    
+    
+                        $now = new DateTime();
+                        date_default_timezone_set('Africa/Accra');
+    
+                        $startTime = date('Y-m-d H:i:s');
+    
+                        $s = strtotime("+24 hours", strtotime($startTime));
+                        $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
                        
-                        return response()->json(
-                            [
-                                'timestamp' =>  $startTime,
-                                'deviceDesc' => $request['deviceDesc'],
-                                'spectrumSpecs' => [
-                                    'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
-                                    'spectrumSchedules' => [
-                                        "eventTime" => [
-                                            "startTime" => $startTime,
-                                            "stopTime" => $stopTime
+                        $DatabaseSpec = DatabaseSpec::all();
+                        if ($spectrum["created_at"] > date('Y-m-d H:i:s', $oneDayAgo)) {
+                            return response()->json(
+                                [
+                                    'error' => 'no avaliable spectrums'
+                                ]
+                            );
+                        } else {
+                            $stopTime = date('Y-m-d H:i:s', $s);
+                           
+                            return response()->json(
+                                [
+                                    'timestamp' =>  $startTime,
+                                    'deviceDesc' => $request['deviceDesc'],
+                                    'spectrumSpecs' => [
+                                        'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
+                                        'spectrumSchedules' => [
+                                            "eventTime" => [
+                                                "startTime" => $startTime,
+                                                "stopTime" => $stopTime
+                                            ],
+                                            "Spectrum" => [
+                                                "resolutionBwHz" => $spectrum->resolutionBwHz,
+                                                "profiles" => $spectrumProfiles
+                                            ],
+    
                                         ],
-                                        "Spectrum" => [
-                                            "resolutionBwHz" => $spectrum->resolutionBwHz,
-                                            "profiles" => $spectrumProfiles
-                                        ],
-
                                     ],
-                                ],
-                                'databaseChange'=> $DatabaseSpec,
-                            ]
-                        );
-                       
+                                    'databaseChange'=> $DatabaseSpec,
+                                ]
+                            );
+                           
+                        }
                     }
-                }
-            }
+                }catch (Exception $e) {
+                    Log::alert($e->getMessage());
+                   
+                    return response()->json(
+                        $e
+                    );
+                   
+                }  
+                
+               
+            
         }
     }
 }

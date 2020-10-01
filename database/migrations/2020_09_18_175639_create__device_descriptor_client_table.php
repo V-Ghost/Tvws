@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Query\Expression;
 
-class CreateDeviceDescriptorTable extends Migration
+class CreateDeviceDescriptorClientTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +13,15 @@ class CreateDeviceDescriptorTable extends Migration
      */
     public function up()
     {
-        Schema::create('DeviceDescriptor-Master', function (Blueprint $table) {
-            
+        Schema::create('deviceDescriptor-Client', function (Blueprint $table) {
             $table->string('serialNumber', 100);
             $table->string('deviceId', 100);
             $table->string('password', 100);
             $table->string('username', 100);
             $table->string('modelId', 100);
             $table->string('manufacturerId', 100);
+            $table->string('phoneNumber',100);
+            $table->string('deviceType', 100);
             $table->string('region', 100);
             $table->string('district', 100);
             $table->string('operator', 100);
@@ -32,7 +32,6 @@ class CreateDeviceDescriptorTable extends Migration
             $table->float('antennaheight');
             $table->float('antennaheighttype');
             $table->primary('deviceId');
-            
         });
     }
 
@@ -43,6 +42,6 @@ class CreateDeviceDescriptorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DeviceDescriptor-Master');
+        Schema::dropIfExists('deviceDescriptor-Client');
     }
 }

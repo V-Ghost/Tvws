@@ -5,11 +5,14 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(App\DeviceDescriptor::class, function (Faker $faker) {
+$factory->define(App\DeviceDescriptorClient::class, function (Faker $faker) {
     return [
+    
         'serialNumber' => $faker->uuid,
         'manufacturerId' => $faker->uuid,
         'modelId' => $faker->uuid,
+        'deviceType' => $faker->word,
+        'phoneNumber' => $faker->phoneNumber,
         'password' => $faker->word,
         'latitude' => $faker->latitude,
         'longitude' => $faker->longitude,
@@ -22,7 +25,5 @@ $factory->define(App\DeviceDescriptor::class, function (Faker $faker) {
         'antennaheight' => $faker->randomFloat(2,0,100),
         'antennaheighttype' => $faker->randomFloat(2,0,100),
         'deviceId' => $faker->uuid,
-        
-        
     ];
 });

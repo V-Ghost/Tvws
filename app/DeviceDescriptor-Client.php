@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DeviceDescriptor extends Model
+class DeviceDescriptorClient extends Model
 {
-    protected $table = 'DeviceDescriptor-Master';
+    protected $table = 'deviceDescriptor-Client';
     public $incrementing = false;
     public $timestamps = false;
     protected $primaryKey = 'deviceId';
