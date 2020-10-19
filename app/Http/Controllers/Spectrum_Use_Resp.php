@@ -56,8 +56,10 @@ class Spectrum_Use_Resp extends Controller
                     date_default_timezone_set('Africa/Accra');
 
                     $startTime = date('Y-m-d H:i:s');
-
-                    $spectrum = Spectrums::where('resolutionBwHz', $request['spectra']['resolutionBwHz'])->update(['created_at' => $startTime]);
+                    foreach($request['spectra'] as $r){
+                        $spectrum = Spectrums::where('ID', $r['ID'])->update(['created_at' => $startTime]);
+                    }
+                   
                     $DatabaseSpec = DatabaseSpec::all();
                     return response()->json(
                         [

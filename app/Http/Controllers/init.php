@@ -18,8 +18,38 @@ class init extends Controller
     public function index()
     {
         $ruleset = RulesetInfo::all();
-       
+
         return new RulesetInfoCollection($ruleset);
+    }
+
+    public function insert(Request $request)
+    {
+        $valid = Validator::make(
+            $request->all(),
+            [
+                'authority' => 'required',
+                'rulesetId' => 'required',
+
+            ]
+        );
+
+        if ($valid->fails()) {
+            return response()->json(
+                ['201' => $valid->errors()]
+            );
+        } else {
+            $r = new RulesetInfo();
+            $r->authority = $request['authority'];
+            $r->rulesetId = $request['rulesetId'];
+            if ($r->save()) {
+                return response()->json(
+                    [
+
+                        'Status' => "Done",
+                    ]
+                );
+            }
+        }
     }
     public function initialise(Request $request)
     {
@@ -40,19 +70,19 @@ class init extends Controller
                 $lat = json_encode($request['location']['point']['center']['latitude'], JSON_NUMERIC_CHECK);
                 $long = json_encode($request['location']['point']['center']['longitude'], JSON_NUMERIC_CHECK);
                 $s = new DistanceCalculator;
-                try{
+                try {
                     $f = $s->distance(5.655921, -0.182405, $lat, $long);
-                }catch(Exception $e){
+                } catch (Exception $e) {
                     return response()->json(
                         [
                             'Error' => 'Lant',
-    
+
                         ]
                     );
                 }
-               
 
-                
+
+
                 if ($f > 50) {
                     $error = [
                         '104' => 'OUTSIDE_COVERAGE_AREA',

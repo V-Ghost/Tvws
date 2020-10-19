@@ -17,8 +17,8 @@ class CreateRulesetInfoTable extends Migration
             $table->string('authority',100);
            
             $table->string('rulesetId',100);
-            $table->float('maxLocationChange');
-            $table-> integer('maxPollingSecs');
+            // $table->float('maxLocationChange');
+            // $table-> integer('maxPollingSecs');
             $table->primary('rulesetId');
             
         });

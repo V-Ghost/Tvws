@@ -8,10 +8,13 @@ class Spectrums extends Model
 {
 
     
-    public $timestamps = false;
+    // public $timestamps = false;
+    protected $primaryKey = 'ID';
     protected $table = 'Spectrums';
-    public function SpectrumProfilePoints()
-    {
-        return $this->hasMany('App\SpectrumProfilePoints');
-    }
+    public function setUpdatedAtAttribute($value)
+{
+    // to Disable updated_at
+}
+const UPDATED_AT = null;
+    
 }
