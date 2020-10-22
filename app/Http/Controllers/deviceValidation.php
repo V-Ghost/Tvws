@@ -19,17 +19,17 @@ use App\DatabaseSpec;
 
 class DeviceValidation extends Controller
 {
-   
+
     public function dev_valid(Request $request)
     {
         $valid = Validator::make(
             $request->all(),
             [
                 'key' => 'required',
-                'deviceDesc.manufacturerId' => 'required',
+                
                 'deviceDesc.password' => 'required',
                 'deviceDesc.rulesetIDs' => 'required',
-                'deviceDesc.serialNumber' => 'required',
+                'deviceDesc.username' => 'required',
 
             ]
         );
@@ -45,22 +45,23 @@ class DeviceValidation extends Controller
                 $password = json_encode($request['deviceDesc']['password']);
 
                 if (strcmp("master", $request['key']) == 0) {
-                    $id = $x . $y;
-                    
+                    $id = json_encode($request['deviceDesc']['username']);
+
                     $data = DeviceDescriptor::find($id);
-                   
+
                     if (empty($data) || !Hash::check($password, $data["password"])) {
-                        
+
+                        $data["password"] = "*********";
                         return response()->json(
                             [
-                                'manufacturerId' => $request['deviceDesc']['manufacturerId'],
-                                'serialNumber' => $request['deviceDesc']['serialNumber'],
+
+                                'data' => $data,
                                 'isValid' => "False"
 
                             ]
                         );
                     } else {
-                         
+
                         return response()->json(
                             [
                                 'manufacturerId' => $request['deviceDesc']['manufacturerId'],
@@ -71,15 +72,15 @@ class DeviceValidation extends Controller
                         );
                     }
                 } elseif (strcmp("client", $request['key']) == 0) {
-                    $id = $x . $y;
+                    $id = json_encode($request['deviceDesc']['username']);
                     $data = DeviceDescriptorClient::find($id);
 
                     if (empty($data) || !Hash::check($password, $data["password"])) {
-                        
+                        $data["password"] = "*********";
                         return response()->json(
                             [
-                                'manufacturerId' => $request['deviceDesc']['manufacturerId'],
-                                'serialNumber' => $request['deviceDesc']['serialNumber'],
+
+                                'data' => $data,
                                 'isValid' => "False"
 
                             ]

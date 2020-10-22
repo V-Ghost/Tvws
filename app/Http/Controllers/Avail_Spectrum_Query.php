@@ -83,8 +83,8 @@ class Avail_Spectrum_Query extends Controller
                     'deviceDesc' => 'required',
                     'location.latitude' => 'required',
                     'location.longitude' => 'required',
-                    'deviceDesc.manufacturerId' => 'required',
-                    'deviceDesc.serialNumber' => 'required',
+                    'deviceDesc.username' => 'required',
+                   
                 ]
             );
             if ($valid->fails()) {
@@ -93,11 +93,10 @@ class Avail_Spectrum_Query extends Controller
                 );
             } else {
                 try{
-                    $y = json_encode($request['deviceDesc']['serialNumber']);
-                    $x = json_encode($request['deviceDesc']['manufacturerId']);
+                   
                     
                    
-                    $id = $x . $y;
+                    $id =   json_encode($request['deviceDesc']['username']);;
                     $data = DeviceDescriptor::find($id);
 
 
@@ -140,7 +139,7 @@ class Avail_Spectrum_Query extends Controller
                                 Log::info($oneDayAgo);
                                 $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
                                 Log::info($f);
-                                if($f < $r["Transmit_distance"]){
+                                if($f > $r["Transmit_distance"]){
                                     Log::info('distance check');
                                    array_push($array,$r);
                                 }

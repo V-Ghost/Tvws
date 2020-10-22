@@ -23,19 +23,19 @@ class DeviceRegistration extends Controller
 
     public function dev_reg(Request $request)
     {
-        if(empty($request['key'])){
+        if (empty($request['key'])) {
             return response()->json(
-               [ 
-                "201"=> "The key field is required"
-                
-               ]
+                [
+                    "201" => "The key field is required"
+
+                ]
             );
-        } 
-            $key = json_encode($request['key'], JSON_FORCE_OBJECT);
-           
-        if(strcmp("master",$request['key'])==0){
-           
-            
+        }
+        $key = json_encode($request['key'], JSON_FORCE_OBJECT);
+
+        if (strcmp("master", $request['key']) == 0) {
+
+
             $valid = Validator::make(
                 $request->all(),
                 [
@@ -55,46 +55,45 @@ class DeviceRegistration extends Controller
                     'deviceDesc.antennaheight' => 'required',
                     'deviceDesc.antennaheighttype' => 'required',
                     'key' => 'required',
-    
-    
+
+
+                ]
+            );
+        } elseif (strcmp("client", $request['key']) == 0) {
+
+            $valid = Validator::make(
+                $request->all(),
+                [
+                    'rulesetIDs' => 'required',
+                    'deviceDesc.modelId' => 'required',
+                    'deviceDesc.manufacturerId' => 'required',
+                    'deviceDesc.serialNumber' => 'required',
+                    'deviceDesc.latitude' => 'required',
+                    'deviceDesc.longitude' => 'required',
+                    'deviceDesc.password' => 'required',
+                    'deviceDesc.username' => 'required',
+                    'deviceDesc.district' => 'required',
+                    'deviceDesc.operator' => 'required',
+                    'deviceDesc.region' => 'required',
+                    'deviceDesc.radiatedpower' => 'required',
+                    'deviceDesc.conductedpower' => 'required',
+                    'deviceDesc.antennaheight' => 'required',
+                    'deviceDesc.antennaheighttype' => 'required',
+                    'deviceDesc.deviceType' => 'required',
+                    'deviceDesc.phoneNumber' => 'required',
+                    'key' => 'required',
+
+
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    "201" => "The key field is incorrect"
+
                 ]
             );
         }
-       elseif( strcmp("client",$request['key'])==0){
-       
-        $valid = Validator::make(
-            $request->all(),
-            [
-                'rulesetIDs' => 'required',
-                'deviceDesc.modelId' => 'required',
-                'deviceDesc.manufacturerId' => 'required',
-                'deviceDesc.serialNumber' => 'required',
-                'deviceDesc.latitude' => 'required',
-                'deviceDesc.longitude' => 'required',
-                'deviceDesc.password' => 'required',
-                'deviceDesc.username' => 'required',
-                'deviceDesc.district' => 'required',
-                'deviceDesc.operator' => 'required',
-                'deviceDesc.region' => 'required',
-                'deviceDesc.radiatedpower' => 'required',
-                'deviceDesc.conductedpower' => 'required',
-                'deviceDesc.antennaheight' => 'required',
-                'deviceDesc.antennaheighttype' => 'required',
-                'deviceDesc.deviceType' => 'required',
-                'deviceDesc.phoneNumber' => 'required',
-                'key' => 'required',
-
-
-            ]
-        );
-       }else{
-        return response()->json(
-            [ 
-             "201"=> "The key field is incorrect"
-             
-            ]
-         ); 
-       }
         if ($valid->fails()) {
             return response()->json(
                 ['201' => $valid->errors()]
@@ -142,11 +141,17 @@ class DeviceRegistration extends Controller
                 }
                 $y = json_encode($request['deviceDesc']['serialNumber']);
                 $x = json_encode($request['deviceDesc']['manufacturerId']);
-                
+
                 $password = json_encode($request['deviceDesc']['password']);
-               
-                $id = $x . $y;
-                if( strcmp("client",$request['key'])==0){
+
+                if (strcmp("client", $request['key']) == 0) {
+                    $id = bin2hex(random_bytes(3));
+                    $data = DeviceDescriptorClient::find($id);
+                    while (!empty($data)) {
+                        $id = bin2hex(random_bytes(3));
+                        $data = DeviceDescriptorClient::find($id);
+                    }
+
                     Log::info('client');
                     $device = new DeviceDescriptorClient;
                     $device->serialNumber = $request['deviceDesc']['serialNumber'];
@@ -171,14 +176,18 @@ class DeviceRegistration extends Controller
                         return response()->json(
                             [
                                 $request['rulesetIDs'],
+                                "UserName" => $id,
                                 'databaseChange' => $DatabaseSpec,
                             ]
                         );
                     }
-                }
-                
-                elseif( strcmp("master",$request['key'])==0){
-                    Log::info('master');
+                } elseif (strcmp("master", $request['key']) == 0) {
+                    $id = bin2hex(random_bytes(3));
+                    $data = DeviceDescriptor::find($id);
+                    while (!empty($data)) {
+                        $id = bin2hex(random_bytes(3));
+                        $data = DeviceDescriptor::find($id);
+                    }
                     $device = new DeviceDescriptor;
                     $device->serialNumber = $request['deviceDesc']['serialNumber'];
                     $device->manufacturerId = $request['deviceDesc']['manufacturerId'];
@@ -200,26 +209,25 @@ class DeviceRegistration extends Controller
                         return response()->json(
                             [
                                 $request['rulesetIDs'],
+                                "userName" => $id,
                                 'databaseChange' => $DatabaseSpec,
                             ]
                         );
                     }
-                }else{
+                } else {
                     return response()->json(
-                        [ 
-                         "201"=> "The key field is required"
-                         
+                        [
+                            "201" => "The key field is required"
+
                         ]
-                     ); 
+                    );
                 }
-               
             } catch (Exception $e) {
                 Log::alert($e->getMessage());
-               
+
                 return response()->json(
                     $e
                 );
-               
             }
         }
     }

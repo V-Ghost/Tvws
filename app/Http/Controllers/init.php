@@ -8,6 +8,7 @@ use App\RulesetInfo;
 use App\Library\DistanceCalculator;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
+use App\DeviceDescriptorClient;
 
 use App\DatabaseSpec;
 use App\Http\Resources\DatabaseSpecCollection as DatabaseSpecCollection;
@@ -18,7 +19,8 @@ class init extends Controller
     public function index()
     {
         $ruleset = RulesetInfo::all();
-
+        
+     
         return new RulesetInfoCollection($ruleset);
     }
 
