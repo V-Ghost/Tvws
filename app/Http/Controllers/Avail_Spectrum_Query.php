@@ -96,13 +96,13 @@ class Avail_Spectrum_Query extends Controller
             } else {
                 try{
                    
+                   
+                    
+                  
                     
                    
-                    $id =   json_encode($request['deviceDesc']['username']);
-                    Log::info($id);
-                    Log::info("gdb");
-                    Log::info($request['deviceDesc']['username']);
-                    $data = DeviceDescriptor::find($id);
+                    $data = DeviceDescriptor::find($request['deviceDesc']['username']);
+                    
 
 
                     if (empty($data)) {
@@ -123,7 +123,7 @@ class Avail_Spectrum_Query extends Controller
     
                         $spectrum = Spectrums::all();
     
-                       $now = new DateTime();
+                        $now = new DateTime();
                         date_default_timezone_set('Africa/Accra');
     
                         $startTime = date('Y-m-d H:i:s');
@@ -137,15 +137,13 @@ class Avail_Spectrum_Query extends Controller
                         $long = json_encode($request['location']['longitude'], JSON_NUMERIC_CHECK);
                         $distance = new DistanceCalculator;
                         foreach($spectrum as $r){
-                            Log::info($r);
+                           
                             if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
-                                Log::info('Date check');
-                                Log::info($r["created_at"]);
-                                Log::info($oneDayAgo);
+                                
                                 $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
-                                Log::info($f);
+                               
                                 if($f > $r["Transmit_distance"]){
-                                    Log::info('distance check');
+                                    
                                    array_push($array,$r);
                                 }
                             } 
@@ -183,7 +181,7 @@ class Avail_Spectrum_Query extends Controller
                         }
                     }
                 }catch (Exception $e) {
-                    Log::alert($e->getMessage());
+                   
                    
                     return response()->json(
                         $e

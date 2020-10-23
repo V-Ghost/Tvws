@@ -23,20 +23,19 @@ class Spectrum_Use_Resp extends Controller
         $valid = Validator::make(
             $request->all(),
             [
-                'deviceDesc.manufacturerId' => 'required',
-                'deviceDesc.serialNumber' => 'required',
+                'deviceDesc.username' => 'required',
+               
                 'spectra' => 'required',
             ]
         );
-        $y = json_encode($request['deviceDesc']['serialNumber']);
-        $x = json_encode($request['deviceDesc']['manufacturerId']);
+        
 
 
-        $id = $x . $y;
-        Log::info($id);
-        $data = DeviceDescriptor::find($id);
+       
+       
+        $data = DeviceDescriptor::find($request['deviceDesc']['username']);
         if (empty($data)) {
-            Log::info($data);
+           
             return response()->json(
                 ['error' => "not resgistered"]
             );
@@ -68,7 +67,7 @@ class Spectrum_Use_Resp extends Controller
                     );
                 }
             } catch (Exception $e) {
-                Log::alert($e->getMessage());
+               
 
                 return response()->json(
                     $e

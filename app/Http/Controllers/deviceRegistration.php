@@ -45,7 +45,7 @@ class DeviceRegistration extends Controller
                     'deviceDesc.serialNumber' => 'required',
                     'deviceDesc.latitude' => 'required',
                     'deviceDesc.longitude' => 'required',
-                    'deviceDesc.password' => 'required',
+                   
                     'deviceDesc.username' => 'required',
                     'deviceDesc.district' => 'required',
                     'deviceDesc.operator' => 'required',
@@ -70,7 +70,7 @@ class DeviceRegistration extends Controller
                     'deviceDesc.serialNumber' => 'required',
                     'deviceDesc.latitude' => 'required',
                     'deviceDesc.longitude' => 'required',
-                    'deviceDesc.password' => 'required',
+                    
                     'deviceDesc.username' => 'required',
                     'deviceDesc.district' => 'required',
                     'deviceDesc.operator' => 'required',
@@ -132,7 +132,7 @@ class DeviceRegistration extends Controller
                 $f = $s->distance(5.655921, -0.182405, $lat, $long);
 
 
-                if ($f > 50) {
+                if ($f > 500) {
                     $error = [
                         '104' => 'OUTSIDE_COVERAGE_AREA',
 
@@ -142,8 +142,8 @@ class DeviceRegistration extends Controller
                 $y = json_encode($request['deviceDesc']['serialNumber']);
                 $x = json_encode($request['deviceDesc']['manufacturerId']);
 
-                $password = json_encode($request['deviceDesc']['password']);
-
+                $password =  bin2hex(random_bytes(3));
+                
                 if (strcmp("client", $request['key']) == 0) {
                     $id = bin2hex(random_bytes(3));
                     $data = DeviceDescriptorClient::find($id);
@@ -152,7 +152,7 @@ class DeviceRegistration extends Controller
                         $data = DeviceDescriptorClient::find($id);
                     }
 
-                    Log::info('client');
+                    
                     $device = new DeviceDescriptorClient;
                     $device->serialNumber = $request['deviceDesc']['serialNumber'];
                     $device->manufacturerId = $request['deviceDesc']['manufacturerId'];
@@ -172,12 +172,39 @@ class DeviceRegistration extends Controller
                     $device->password = Hash::make($password);
                     $device->deviceId = $id;
                     $DatabaseSpec = DatabaseSpec::all();
+                    $spectrum = Spectrums::all();
+                   
+                    $now = new DateTime();
+                    date_default_timezone_set('Africa/Accra');
+
+                     $startTime = date('Y-m-d H:i:s');
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                    $array = array();
+                    $lat = json_encode($request['deviceDesc']['latitude'], JSON_NUMERIC_CHECK);
+                    $long = json_encode($request['deviceDesc']['longitude'], JSON_NUMERIC_CHECK);
+                    $distance = new DistanceCalculator;
+                    foreach($spectrum as $r){
+                       
+                        if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+                           
+                            $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+                           
+                            if($f > $r["Transmit_distance"]){
+                               
+                               array_push($array,$r);
+                            }
+                        } 
+                        
+                    }
                     if ($device->save()) {
                         return response()->json(
                             [
                                 $request['rulesetIDs'],
-                                "UserName" => $id,
+                                "username" => $id,
+                                "password" => $password,
                                 'databaseChange' => $DatabaseSpec,
+                                "avaliable Spectrums" => sizeof($array)
                             ]
                         );
                     }
@@ -188,6 +215,7 @@ class DeviceRegistration extends Controller
                         $id = bin2hex(random_bytes(3));
                         $data = DeviceDescriptor::find($id);
                     }
+                    
                     $device = new DeviceDescriptor;
                     $device->serialNumber = $request['deviceDesc']['serialNumber'];
                     $device->manufacturerId = $request['deviceDesc']['manufacturerId'];
@@ -204,13 +232,43 @@ class DeviceRegistration extends Controller
                     $device->antennaheighttype = $request['deviceDesc']['antennaheighttype'];
                     $device->password = Hash::make($password);
                     $device->deviceId = $id;
+                   
+                    $spectrum = Spectrums::all();
+                   
+                    $now = new DateTime();
+                    date_default_timezone_set('Africa/Accra');
+
+                     $startTime = date('Y-m-d H:i:s');
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                    $array = array();
+                    $lat = json_encode($request['deviceDesc']['latitude'], JSON_NUMERIC_CHECK);
+                    $long = json_encode($request['deviceDesc']['longitude'], JSON_NUMERIC_CHECK);
+                    $distance = new DistanceCalculator;
+                    foreach($spectrum as $r){
+                       
+                        if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+                           
+                            $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+                           
+                            if($f > $r["Transmit_distance"]){
+                               
+                               array_push($array,$r);
+                            }
+                        } 
+                        
+                    }
+                   
+                    
                     $DatabaseSpec = DatabaseSpec::all();
                     if ($device->save()) {
                         return response()->json(
                             [
                                 $request['rulesetIDs'],
-                                "userName" => $id,
+                                "username" => $id,
+                                "password" => $password,
                                 'databaseChange' => $DatabaseSpec,
+                                "avaliable Spectrums" => sizeof($array)
                             ]
                         );
                     }
@@ -223,7 +281,7 @@ class DeviceRegistration extends Controller
                     );
                 }
             } catch (Exception $e) {
-                Log::alert($e->getMessage());
+              
 
                 return response()->json(
                     $e

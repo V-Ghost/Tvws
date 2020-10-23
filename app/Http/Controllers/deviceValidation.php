@@ -26,7 +26,6 @@ class DeviceValidation extends Controller
             $request->all(),
             [
                 'key' => 'required',
-                
                 'deviceDesc.password' => 'required',
                 'deviceDesc.rulesetIDs' => 'required',
                 'deviceDesc.username' => 'required',
@@ -39,57 +38,87 @@ class DeviceValidation extends Controller
             );
         } else {
             try {
-                $y = json_encode($request['deviceDesc']['serialNumber']);
-                $x = json_encode($request['deviceDesc']['manufacturerId']);
+               
 
                 $password = json_encode($request['deviceDesc']['password']);
-
+               
                 if (strcmp("master", $request['key']) == 0) {
-                    $id = json_encode($request['deviceDesc']['username']);
+                  
 
-                    $data = DeviceDescriptor::find($id);
+                    $data = DeviceDescriptor::find($request['deviceDesc']['username']);
 
-                    if (empty($data) || !Hash::check($password, $data["password"])) {
-
+                    if (empty($data) )
+                    // && !Hash::check($password, $data["password"]))
+                     {
                        
                         return response()->json(
                             [
 
-                                'data' => $data,
-                                'isValid' => "False"
+                                'data' => "",
+                                'isValid' => "False",
+                                'reason' => "username doesnot exist"
 
                             ]
                         );
-                    } else {
+                    }
+                    if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                        
                         $data["password"] = "*********";
                         return response()->json(
                             [
                                 'data' => $data,
                                 'isValid' => "True"
+
+                            ]
+                        );
+                    } 
+                    else {
+                        return response()->json(
+                            [
+
+                                'data' => "",
+                                'isValid' => "False",
+                                'reason' => "wrong password"
 
                             ]
                         );
                     }
                 } elseif (strcmp("client", $request['key']) == 0) {
-                    $id = json_encode($request['deviceDesc']['username']);
-                    $data = DeviceDescriptorClient::find($id);
+                   
+                    $data = DeviceDescriptorClient::find($request['deviceDesc']['username']);
 
-                    if (empty($data) || !Hash::check($password, $data["password"])) {
+                    if (empty($data) )
+                    // && !Hash::check($password, $data["password"]))
+                     {
                        
                         return response()->json(
                             [
 
-                                'data' => $data,
-                                'isValid' => "False"
+                                'data' => "",
+                                'isValid' => "False",
+                                'reason' => "username doesnot exist"
 
                             ]
                         );
-                    } else {
+                    }
+                    if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                        
                         $data["password"] = "*********";
                         return response()->json(
                             [
                                 'data' => $data,
                                 'isValid' => "True"
+
+                            ]
+                        );
+                    } 
+                    else {
+                        return response()->json(
+                            [
+
+                                'data' => "",
+                                'isValid' => "False",
+                                'reason' => "wrong password"
 
                             ]
                         );
@@ -103,7 +132,7 @@ class DeviceValidation extends Controller
                     );
                 }
             } catch (Exception $e) {
-                Log::alert($e->getMessage());
+               
 
                 return response()->json(
                     $e

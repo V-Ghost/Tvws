@@ -9,8 +9,7 @@ use App\Library\DistanceCalculator;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
 use App\DeviceDescriptorClient;
- Log::info("gdb");
-use App\DatabaseSpec;
+ use App\DatabaseSpec;
 use App\Http\Resources\DatabaseSpecCollection as DatabaseSpecCollection;
 use Exception;
 
