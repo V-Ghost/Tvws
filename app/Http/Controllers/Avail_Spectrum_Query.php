@@ -84,6 +84,8 @@ class Avail_Spectrum_Query extends Controller
                     'location.latitude' => 'required',
                     'location.longitude' => 'required',
                     'deviceDesc.username' => 'required',
+                    
+                    
                    
                 ]
             );
@@ -96,7 +98,10 @@ class Avail_Spectrum_Query extends Controller
                    
                     
                    
-                    $id =   json_encode($request['deviceDesc']['username']);;
+                    $id =   json_encode($request['deviceDesc']['username']);
+                    Log::info($id);
+                    Log::info("gdb");
+                    Log::info($request['deviceDesc']['username']);
                     $data = DeviceDescriptor::find($id);
 
 

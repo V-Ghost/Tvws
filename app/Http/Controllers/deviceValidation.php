@@ -51,7 +51,7 @@ class DeviceValidation extends Controller
 
                     if (empty($data) || !Hash::check($password, $data["password"])) {
 
-                        $data["password"] = "*********";
+                       
                         return response()->json(
                             [
 
@@ -61,11 +61,10 @@ class DeviceValidation extends Controller
                             ]
                         );
                     } else {
-
+                        $data["password"] = "*********";
                         return response()->json(
                             [
-                                'manufacturerId' => $request['deviceDesc']['manufacturerId'],
-                                'serialNumber' => $request['deviceDesc']['serialNumber'],
+                                'data' => $data,
                                 'isValid' => "True"
 
                             ]
@@ -76,7 +75,7 @@ class DeviceValidation extends Controller
                     $data = DeviceDescriptorClient::find($id);
 
                     if (empty($data) || !Hash::check($password, $data["password"])) {
-                        $data["password"] = "*********";
+                       
                         return response()->json(
                             [
 
@@ -86,10 +85,10 @@ class DeviceValidation extends Controller
                             ]
                         );
                     } else {
+                        $data["password"] = "*********";
                         return response()->json(
                             [
-                                'manufacturerId' => $request['deviceDesc']['manufacturerId'],
-                                'serialNumber' => $request['deviceDesc']['serialNumber'],
+                                'data' => $data,
                                 'isValid' => "True"
 
                             ]

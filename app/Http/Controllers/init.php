@@ -9,7 +9,7 @@ use App\Library\DistanceCalculator;
 use App\Http\Resources\RulesetInfoCollection as RulesetInfoCollection;
 use Validator;
 use App\DeviceDescriptorClient;
-
+ Log::info("gdb");
 use App\DatabaseSpec;
 use App\Http\Resources\DatabaseSpecCollection as DatabaseSpecCollection;
 use Exception;
@@ -20,7 +20,7 @@ class init extends Controller
     {
         $ruleset = RulesetInfo::all();
         
-     
+        Log::emergency("gdb");
         return new RulesetInfoCollection($ruleset);
     }
 
