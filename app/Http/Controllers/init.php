@@ -19,7 +19,7 @@ class init extends Controller
     {
         $ruleset = RulesetInfo::all();
         
-        Log::emergency("gdb");
+        
         return new RulesetInfoCollection($ruleset);
     }
 
