@@ -75,8 +75,7 @@ class DeviceRegistration extends Controller
                     'deviceDesc.district' => 'required',
                     'deviceDesc.operator' => 'required',
                     'deviceDesc.region' => 'required',
-                    'deviceDesc.radiatedpower' => 'required',
-                    'deviceDesc.conductedpower' => 'required',
+                   
                     'deviceDesc.antennaheight' => 'required',
                     'deviceDesc.antennaheighttype' => 'required',
                     'deviceDesc.deviceType' => 'required',
@@ -165,8 +164,7 @@ class DeviceRegistration extends Controller
                     $device->deviceType = $request['deviceDesc']['deviceType'];
                     $device->phoneNumber = $request['deviceDesc']['phoneNumber'];
                     $device->operator = $request['deviceDesc']['operator'];
-                    $device->radiatedpower = $request['deviceDesc']['radiatedpower'];
-                    $device->conductedpower = $request['deviceDesc']['conductedpower'];
+                   
                     $device->antennaheight = $request['deviceDesc']['antennaheight'];
                     $device->antennaheighttype = $request['deviceDesc']['antennaheighttype'];
                     $device->password = Hash::make($password);

@@ -25,8 +25,7 @@ class CreateDeviceDescriptorClientTable extends Migration
             $table->string('region', 100);
             $table->string('district', 100);
             $table->string('operator', 100);
-            $table->float('radiatedpower');
-            $table->float('conductedpower');
+           
             $table->float('latitude');
             $table->float('longitude');
             $table->string('antennaheight',100);
