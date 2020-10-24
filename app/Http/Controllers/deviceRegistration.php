@@ -45,7 +45,7 @@ class DeviceRegistration extends Controller
                     'deviceDesc.serialNumber' => 'required',
                     'deviceDesc.latitude' => 'required',
                     'deviceDesc.longitude' => 'required',
-                   
+                    'deviceDesc.transmitter_power' => 'required',
                     'deviceDesc.username' => 'required',
                     'deviceDesc.district' => 'required',
                     'deviceDesc.operator' => 'required',
@@ -224,6 +224,7 @@ class DeviceRegistration extends Controller
                     $device->longitude = $request['deviceDesc']['longitude'];
                     $device->username = $request['deviceDesc']['longitude'];
                     $device->region = $request['deviceDesc']['region'];
+                    $device->transmitter_power = $request['deviceDesc']['transmitter_power'];
                     $device->district = $request['deviceDesc']['district'];
                     $device->operator = $request['deviceDesc']['operator'];
                     $device->radiatedpower = $request['deviceDesc']['radiatedpower'];

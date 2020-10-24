@@ -36,6 +36,7 @@ Route::post('device_reg', 'DeviceRegistration@dev_reg');
 
 Route::post('insert_spec', 'Avail_Spectrum_Query@index');
 
+Route::get('spec_all', 'Avail_Spectrum_Query@all');
 
 Route::get('init', 'init@index');
 

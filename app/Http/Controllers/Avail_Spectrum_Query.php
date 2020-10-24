@@ -17,6 +17,12 @@ use App\DatabaseSpec;
 class Avail_Spectrum_Query extends Controller
 {
 
+    public function all(){
+        $spectrum = Spectrums::all();
+    
+        return $spectrum;
+    }
+
     public function index(Request $request)
     {
     

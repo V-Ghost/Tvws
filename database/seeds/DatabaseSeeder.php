@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(RulesetInfoSeeder::class);
-        $this->call(DeviceDescriptorSeeder::class);
-        $this->call(DeviceDescriptorClient::class);
+        // $this->call(DeviceDescriptorSeeder::class);
+        // $this->call(DeviceDescriptorClient::class);
         // $this->call(SpectrumSeeder::class);
     }
 }

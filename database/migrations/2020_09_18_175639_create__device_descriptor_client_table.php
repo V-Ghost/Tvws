@@ -29,7 +29,7 @@ class CreateDeviceDescriptorClientTable extends Migration
             $table->float('conductedpower');
             $table->float('latitude');
             $table->float('longitude');
-            $table->float('antennaheight');
+            $table->string('antennaheight',100);
             $table->float('antennaheighttype');
             $table->primary('deviceId');
         });
