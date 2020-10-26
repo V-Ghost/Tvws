@@ -8,7 +8,7 @@ use App\Library\DistanceCalculator;
 use App\DeviceDescriptor;
 use Illuminate\Support\Facades\Log;
 use Datetime;
-use App\Http\Resources\Spectrums as SpectrumResource;
+
 use App\RulesetInfo;
 use App\Spectrums;
 use App\SpectrumProfilePoints;
@@ -18,8 +18,9 @@ class Avail_Spectrum_Query extends Controller
 {
 
     public function all(){
-        $spectrum = Spectrums::all();
-         Log::info($spectrum);
+       
+        $spectrum =  Spectrum::select('ID');;
+        //  Log::info("gsvggsvs");
         return $spectrum;
     }
 
