@@ -9,7 +9,7 @@ class Spectrums extends Model
 
     
     // public $timestamps = false;
-    protected $primaryKey = 'ID';
+    // protected $primaryKey = 'ID';
     protected $table = 'Spectrums';
     public function setUpdatedAtAttribute($value)
 {
