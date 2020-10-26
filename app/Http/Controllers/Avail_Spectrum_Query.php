@@ -19,8 +19,12 @@ class Avail_Spectrum_Query extends Controller
 
     public function all(){
         $spectrum = Spectrums::all();
-    
-        return $spectrum;
+        return response()->json(
+            [$request[1]['deviceDesc']['ID'],
+            $request[2]['deviceDesc']['ID'];
+            ]
+        );
+        return 
     }
 
     public function index(Request $request)
