@@ -20,9 +20,9 @@ class Avail_Spectrum_Query extends Controller
     public function all(){
         $spectrum = Spectrums::all();
         return response()->json(
-            [$request[1],
+            $request[1],
            
-            ]
+            
         );
       
     }
