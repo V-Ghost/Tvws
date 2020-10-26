@@ -17,8 +17,8 @@ use App\RulesetInfo;
 
 class Spectrum_Use_Resp extends Controller
 {
-
-    public function Log_out(Request $request){
+    public function Log_Out(Request $request)
+    {
         $valid = Validator::make(
             $request->all(),
             [
@@ -72,6 +72,8 @@ class Spectrum_Use_Resp extends Controller
                 return response()->json(
                     $e
                 );
+            }
+        }
     }
 
     public function spectrum_Use(Request $request)
