@@ -18,8 +18,8 @@ class Avail_Spectrum_Query extends Controller
 {
 
     public function all(){
-        $spectrum =  Spectrums::select('ID');;
-        // $spectrum = Spectrums::all();
+        // $spectrum =  Spectrums::select('ID');
+        $spectrum = Spectrums::all();
          Log::info("gsvggsvs");
         return $spectrum;
     }
