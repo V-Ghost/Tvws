@@ -24,7 +24,7 @@ class Avail_Spectrum_Query extends Controller
             $request[2]['deviceDesc']['ID']
             ]
         );
-        return 
+      
     }
 
     public function index(Request $request)
