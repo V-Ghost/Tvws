@@ -94,7 +94,7 @@ class DeviceValidation extends Controller
                             [
                                 'data' => $data,
                                 'isValid' => "True",
-                                $array
+                                "avaliable Spectrums" => sizeof($array)
 
                             ]
                         );
@@ -159,7 +159,7 @@ class DeviceValidation extends Controller
                             [
                                 'data' => $data,
                                 'isValid' => "True",
-                                $array
+                                "avaliable Spectrums" => sizeof($array)
 
                             ]
                         );
