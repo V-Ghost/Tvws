@@ -22,7 +22,7 @@ class Avail_Spectrum_Query extends Controller
         return response()->json(
             [$spectrum[3]['deviceDesc']['ID'],]
         );
-        return 
+       
     }
 
     public function index(Request $request)
