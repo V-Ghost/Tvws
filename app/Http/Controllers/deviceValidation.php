@@ -20,6 +20,8 @@ use App\DatabaseSpec;
 class DeviceValidation extends Controller
 {
 
+    
+   
     public function dev_valid(Request $request)
     {
         $valid = Validator::make(

@@ -32,6 +32,8 @@ Route::post('spectrum_use', 'Spectrum_Use_Resp@spectrum_Use');
 
 Route::post('device_valid', 'DeviceValidation@dev_valid');
 
+Route::post('log_out', 'Spectrum_Use_Resp@Log_out');
+
 Route::post('device_reg', 'DeviceRegistration@dev_reg');
 
 Route::post('insert_spec', 'Avail_Spectrum_Query@index');
