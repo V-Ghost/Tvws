@@ -56,7 +56,7 @@ class Spectrum_Use_Resp extends Controller
                     $startTime = date('Y-m-d H:i:s');
                     $oneDayAgo = strtotime("-24 hours", strtotime($startTime));
                     foreach($request['spectra'] as $r){
-                        $spectrum = Spectrums::where('ID', $r['ID'])->update(['created_at' => $oneDayAgo]);
+                        $spectrum = Spectrums::where('ID', $r['ID'])->update(['created_at' => date('Y-m-d H:i:s', $oneDayAgo)]);
                     }
                    
                     $DatabaseSpec = DatabaseSpec::all();
