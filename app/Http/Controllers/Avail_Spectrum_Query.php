@@ -18,6 +18,7 @@ class Avail_Spectrum_Query extends Controller
 {
 
     public function all(){
+        $spectrum = Spectrums::firstWhere('ID', 52.1);
         // $spectrum =  Spectrums::select('ID');
         $spectrum = Spectrums::all();
          Log::info("gsvggsvs");
