@@ -64,12 +64,37 @@ class DeviceValidation extends Controller
                         );
                     }
                     if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                        $spectrum = Spectrums::all();
+                   
+                        $now = new DateTime();
+                    date_default_timezone_set('Africa/Accra');
+
+                     $startTime = date('Y-m-d H:i:s');
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                    $array = array();
+                    $lat = json_encode($data['latitude'], JSON_NUMERIC_CHECK);
+                    $long = json_encode($data['longitude'], JSON_NUMERIC_CHECK);
+                    $distance = new DistanceCalculator;
+                    foreach($spectrum as $r){
+                       
+                        if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+                           
+                            $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+                           
+                            if($f > $r["Transmit_distance"]){
+                               
+                               array_push($array,$r);
+                            }
+                        } 
                         
+                    }
                         $data["password"] = "*********";
                         return response()->json(
                             [
                                 'data' => $data,
-                                'isValid' => "True"
+                                'isValid' => "True",
+                                $array
 
                             ]
                         );
@@ -104,12 +129,37 @@ class DeviceValidation extends Controller
                         );
                     }
                     if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                        $spectrum = Spectrums::all();
+                   
+                        $now = new DateTime();
+                    date_default_timezone_set('Africa/Accra');
+
+                     $startTime = date('Y-m-d H:i:s');
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                    $array = array();
+                    $lat = json_encode($data['latitude'], JSON_NUMERIC_CHECK);
+                    $long = json_encode($data['longitude'], JSON_NUMERIC_CHECK);
+                    $distance = new DistanceCalculator;
+                    foreach($spectrum as $r){
+                       
+                        if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+                           
+                            $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+                           
+                            if($f > $r["Transmit_distance"]){
+                               
+                               array_push($array,$r);
+                            }
+                        } 
                         
+                    }
                         $data["password"] = "*********";
                         return response()->json(
                             [
                                 'data' => $data,
-                                'isValid' => "True"
+                                'isValid' => "True",
+                                $array
 
                             ]
                         );
