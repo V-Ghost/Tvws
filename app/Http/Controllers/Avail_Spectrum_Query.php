@@ -20,7 +20,7 @@ class Avail_Spectrum_Query extends Controller
     public function all(){
         $spectrum = Spectrums::all();
     
-        return $spectrum;
+        return $request['deviceDesc']['ID'];
     }
 
     public function index(Request $request)

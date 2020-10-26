@@ -86,7 +86,7 @@ class DeviceValidation extends Controller
                 } elseif (strcmp("client", $request['key']) == 0) {
                    
                     $data = DeviceDescriptorClient::find($request['deviceDesc']['username']);
-
+                    
                     if (empty($data) )
                     // && !Hash::check($password, $data["password"]))
                      {
