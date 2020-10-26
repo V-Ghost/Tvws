@@ -19,7 +19,7 @@ class Avail_Spectrum_Query extends Controller
 
     public function all(){
         $spectrum = Spectrums::all();
-         
+         Log::info($spectrum);
         return $spectrum;
     }
 
