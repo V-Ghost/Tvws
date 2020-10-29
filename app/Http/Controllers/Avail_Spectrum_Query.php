@@ -257,7 +257,7 @@ class Avail_Spectrum_Query extends Controller
                         $startTime = date('Y-m-d H:i:s');
     
                         $s = strtotime("+24 hours", strtotime($startTime));
-                        $oneDayAgo = strtotime("-15 minutes", strtotime($startTime));
+                        $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
                        
                         $DatabaseSpec = DatabaseSpec::all();
                         $array = array();
