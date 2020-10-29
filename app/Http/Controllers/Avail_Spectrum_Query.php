@@ -22,7 +22,11 @@ class Avail_Spectrum_Query extends Controller
         // $spectrum =  Spectrums::select('ID');
         $spectrum = Spectrums::all();
         //  Log::info("gsvggsvs");
-        return $spectrum;
+        return response()->json(
+            [$spectrum,
+            "avaliable Spectrums" => sizeof($spectrum),
+             ]
+        );
     }
 
 
