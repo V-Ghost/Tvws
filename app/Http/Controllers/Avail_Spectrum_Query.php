@@ -25,6 +25,126 @@ class Avail_Spectrum_Query extends Controller
         return $spectrum;
     }
 
+
+    public function connected(Request $request){
+      
+        $valid = Validator::make(
+            $request->all(),
+            [
+                'deviceDesc' => 'required',
+                'location.latitude' => 'required',
+                'location.longitude' => 'required',
+                'deviceDesc.username' => 'required',
+                
+                
+               
+            ]
+        );
+        if ($valid->fails()) {
+            return response()->json(
+                ['201' => $valid->errors()]
+            );
+        } else {
+            try{
+               
+               
+                
+              
+                
+               
+                $data = DeviceDescriptor::find($request['deviceDesc']['username']);
+                
+
+
+                if (empty($data)) {
+                    
+                    return response()->json(
+                        ['error' => "not resgistered"]
+                    );
+                } else {
+                    $ruleset = RulesetInfo::find($request['deviceDesc']['rulesetIDs']);
+                    
+                    if (empty($ruleset)) {
+                        return response()->json(
+                            ['error' => "not supported"]
+                        );
+                    }
+                   
+
+
+                    $spectrum = Spectrums::all();
+
+                    $now = new DateTime();
+                    date_default_timezone_set('Africa/Accra');
+
+                    $startTime = date('Y-m-d H:i:s');
+
+                    $s = strtotime("+24 hours", strtotime($startTime));
+                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                   
+                    $DatabaseSpec = DatabaseSpec::all();
+                    $array = array();
+                    $lat = json_encode($request['location']['latitude'], JSON_NUMERIC_CHECK);
+                    $long = json_encode($request['location']['longitude'], JSON_NUMERIC_CHECK);
+                    $distance = new DistanceCalculator;
+                    foreach($spectrum as $r){
+                       
+                        if ($r["created_at"] > date('Y-m-d H:i:s', $oneDayAgo)) {
+                            
+                            // $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+                           
+                            
+                                
+                               array_push($array,$r);
+                            
+                        } 
+                        
+                    }
+                    if (empty($array)) {
+                        return response()->json(
+                            [
+                                'error' => 'no avaliable spectrums'
+                            ]
+                        );
+                    } else {
+                       
+                        $stopTime = date('Y-m-d H:i:s', $s);
+                       
+                        return response()->json(
+                            [
+                                'timestamp' =>  $startTime,
+                                'deviceDesc' => $request['deviceDesc'],
+                                'spectrumSpecs' => [
+                                    'rulesetInfo' => $request['deviceDesc']['rulesetIDs'],
+                                    'spectrumSchedules' => [
+                                        "eventTime" => [
+                                            "startTime" => $startTime,
+                                            "stopTime" => $stopTime
+                                        ],
+                                        "Spectrum" => $array,
+
+                                    ],
+                                ],
+                                'databaseChange'=> $DatabaseSpec,
+                            ]
+                        );
+                       
+                    }
+                }
+            }catch (Exception $e) {
+               
+               
+                return response()->json(
+                    $e
+                );
+               
+            }  
+            
+           
+        
+    }
+    }
+
     public function index(Request $request)
     {
     
