@@ -122,24 +122,24 @@ class DeviceRegistration extends Controller
                         '102' => 'NOT_SUPPORTED',
 
                     ];
-                    return $error;
+                    return $error;//add try and catch
                 }
 
                 $lat = json_encode($request['deviceDesc']['latitude'], JSON_NUMERIC_CHECK);
                 $long = json_encode($request['deviceDesc']['longitude'], JSON_NUMERIC_CHECK);
-                $s = new DistanceCalculator; //add try and catch
-                $f = $s->distance(5.655921, -0.182405, $lat, $long);
+                $s = new DistanceCalculator; 
+                $f = $s->distance( 7.959665, -1.198714, $lat, $long);
 
 
-                if ($f > 500) {
+                if ($f > 385) {
                     $error = [
                         '104' => 'OUTSIDE_COVERAGE_AREA',
 
                     ];
                     return $error;
                 }
-                $y = json_encode($request['deviceDesc']['serialNumber']);
-                $x = json_encode($request['deviceDesc']['manufacturerId']);
+                // $y = json_encode($request['deviceDesc']['serialNumber']);
+                // $x = json_encode($request['deviceDesc']['manufacturerId']);
 
                 $password =  bin2hex(random_bytes(3));
                 

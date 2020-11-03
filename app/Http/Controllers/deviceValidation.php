@@ -20,8 +20,8 @@ use App\DatabaseSpec;
 class DeviceValidation extends Controller
 {
 
-    
-   
+
+
     public function dev_valid(Request $request)
     {
         $valid = Validator::make(
@@ -40,19 +40,19 @@ class DeviceValidation extends Controller
             );
         } else {
             try {
-               
+
 
                 $password = json_encode($request['deviceDesc']['password']);
-               
+
                 if (strcmp("master", $request['key']) == 0) {
-                  
+
 
                     $data = DeviceDescriptor::find($request['deviceDesc']['username']);
 
-                    if (empty($data) )
+                    if (empty($data))
                     // && !Hash::check($password, $data["password"]))
-                     {
-                       
+                    {
+
                         return response()->json(
                             [
 
@@ -63,31 +63,30 @@ class DeviceValidation extends Controller
                             ]
                         );
                     }
-                    if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                    if (Hash::check($request['deviceDesc']['password'], $data["password"])) {
                         $spectrum = Spectrums::all();
-                   
+
                         $now = new DateTime();
                         date_default_timezone_set('Africa/Accra');
-    
-                         $startTime = date('Y-m-d H:i:s');
+
+                        $startTime = date('Y-m-d H:i:s');
                         $s = strtotime("+24 hours", strtotime($startTime));
                         $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
                         $array = array();
                         $lat = json_encode($data['latitude'], JSON_NUMERIC_CHECK);
                         $long = json_encode($data['longitude'], JSON_NUMERIC_CHECK);
                         $distance = new DistanceCalculator;
-                        foreach($spectrum as $r){
-                           
+                        foreach ($spectrum as $r) {
+
                             if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
-                               
+
                                 $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
-                               
-                                if($f > $r["Transmit_distance"]){
-                                   
-                                   array_push($array,$r);
+
+                                if ($f > $r["Transmit_distance"]) {
+
+                                    array_push($array, $r);
                                 }
-                            } 
-                            
+                            }
                         }
                         $data["password"] = "*********";
                         return response()->json(
@@ -98,8 +97,7 @@ class DeviceValidation extends Controller
 
                             ]
                         );
-                    } 
-                    else {
+                    } else {
                         return response()->json(
                             [
 
@@ -111,13 +109,13 @@ class DeviceValidation extends Controller
                         );
                     }
                 } elseif (strcmp("client", $request['key']) == 0) {
-                   
+
                     $data = DeviceDescriptorClient::find($request['deviceDesc']['username']);
-                    
-                    if (empty($data) )
+
+                    if (empty($data))
                     // && !Hash::check($password, $data["password"]))
-                     {
-                       
+                    {
+
                         return response()->json(
                             [
 
@@ -128,32 +126,31 @@ class DeviceValidation extends Controller
                             ]
                         );
                     }
-                    if(Hash::check($request['deviceDesc']['password'], $data["password"])){
+                    if (Hash::check($request['deviceDesc']['password'], $data["password"])) {
                         $spectrum = Spectrums::all();
-                   
-                        $now = new DateTime();
-                    date_default_timezone_set('Africa/Accra');
 
-                     $startTime = date('Y-m-d H:i:s');
-                    $s = strtotime("+24 hours", strtotime($startTime));
-                    $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
-                    $array = array();
-                    $lat = json_encode($data['latitude'], JSON_NUMERIC_CHECK);
-                    $long = json_encode($data['longitude'], JSON_NUMERIC_CHECK);
-                    $distance = new DistanceCalculator;
-                    foreach($spectrum as $r){
-                       
-                        if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
-                           
-                            $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
-                           
-                            if($f > $r["Transmit_distance"]){
-                               
-                               array_push($array,$r);
+                        $now = new DateTime();
+                        date_default_timezone_set('Africa/Accra');
+
+                        $startTime = date('Y-m-d H:i:s');
+                        $s = strtotime("+24 hours", strtotime($startTime));
+                        $oneDayAgo = strtotime("-2 minutes", strtotime($startTime));
+                        $array = array();
+                        $lat = json_encode($data['latitude'], JSON_NUMERIC_CHECK);
+                        $long = json_encode($data['longitude'], JSON_NUMERIC_CHECK);
+                        $distance = new DistanceCalculator;
+                        foreach ($spectrum as $r) {
+
+                            if ($r["created_at"] < date('Y-m-d H:i:s', $oneDayAgo)) {
+
+                                $f = $distance->distance($r["Transmit_lat"], $r["Transmit_long"], $lat, $long);
+
+                                if ($f > $r["Transmit_distance"]) {
+
+                                    array_push($array, $r);
+                                }
                             }
-                        } 
-                        
-                    }
+                        }
                         $data["password"] = "*********";
                         return response()->json(
                             [
@@ -163,8 +160,7 @@ class DeviceValidation extends Controller
 
                             ]
                         );
-                    } 
-                    else {
+                    } else {
                         return response()->json(
                             [
 
@@ -184,7 +180,7 @@ class DeviceValidation extends Controller
                     );
                 }
             } catch (Exception $e) {
-               
+
 
                 return response()->json(
                     $e

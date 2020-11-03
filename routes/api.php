@@ -14,17 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/person', function () {
-//     $person = [
-//         'first'=> 'b',
-//         'last' => 'vukania', 
-//     ];
-//     return $person;
-// });
 
 Route::post('init', 'init@initialise');
-
-Route::post('insert_rs', 'init@insert');
 
 Route::post('avail_spectrum', 'Avail_Spectrum_Query@avail_spec');
 
@@ -36,13 +27,15 @@ Route::post('log_out', 'Spectrum_Use_Resp@Log_out');
 
 Route::post('device_reg', 'DeviceRegistration@dev_reg');
 
-Route::post('insert_spec', 'Avail_Spectrum_Query@index');
+// Route::post('insert_rs', 'init@insert');
 
-Route::post('conn', 'Avail_Spectrum_Query@connected');
+// Route::post('insert_spec', 'Avail_Spectrum_Query@index');
 
-Route::get('spec_all', 'Avail_Spectrum_Query@all');
+// Route::post('conn', 'Avail_Spectrum_Query@connected');
 
-Route::get('init', 'init@index');
+// Route::get('spec_all', 'Avail_Spectrum_Query@all');
+
+// Route::get('init', 'init@index');
 
 
 
